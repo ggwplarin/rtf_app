@@ -1,0 +1,35 @@
+﻿<UserControl
+    x:Class="WpfControlLibrary1.UserControl1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfControlLibrary1"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="panelStyle">
+            <Setter Property="ItemsControl.Background" Value="White" />
+            <Setter Property="ItemsControl.FontSize" Value="14" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Style="{StaticResource panelStyle}">
+            <Button Name="OpenBtn" Content="Open" />
+            <Button x:Name="SaveBtn" Content="Save" />
+            <ComboBox x:Name="FontSizeSelector" />
+            <ComboBox x:Name="FontFamilySelector" DisplayMemberPath="Name" />
+            <ComboBox x:Name="OffsetSelector" />
+            <ComboBox x:Name="AlighnSelector" />
+            <ComboBox x:Name="ColorSelector" />
+            <Button x:Name="MakeBoldBtn" Content="Жырный" />
+            <Button x:Name="MakeItalicBtn" Content="Курсив" />
+        </StackPanel>
+        <RichTextBox x:Name="Rich" Grid.Row="1" />
+    </Grid>
+</UserControl>
