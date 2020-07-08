@@ -8,14 +8,13 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <UserControl.Resources>
-        <Style x:Key="panelStyle">
-            <Setter Property="ItemsControl.Background" Value="White" />
-            <Setter Property="ItemsControl.FontSize" Value="14" />
-        </Style>
-    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -29,7 +28,66 @@
             <ComboBox x:Name="ColorSelector" />
             <Button x:Name="MakeBoldBtn" Content="Жырный" />
             <Button x:Name="MakeItalicBtn" Content="Курсив" />
-        </StackPanel>
-        <RichTextBox x:Name="Rich" Grid.Row="1" />
+        </StackPanel>-->
+        <DockPanel Name="mainPanel">
+            <ToolBar
+                Name="mainToolBar"
+                Height="30"
+                DockPanel.Dock="Top">
+
+
+                <Button
+                    Name="SaveBtn"
+                    Click="SaveBtn_Click"
+                    Content="save" />
+                <Button
+                    Name="OpenBtn"
+                    Click="OpenBtn_Click"
+                    Content="open" />
+                <Separator />
+                <Button Command="ApplicationCommands.Cut" Content="cut" />
+                <Button Command="ApplicationCommands.Copy" Content="copy" />
+                <Button Command="ApplicationCommands.Paste" Content="paste" />
+                <Separator />
+                <Button Command="ApplicationCommands.Undo" Content="undo" />
+                <Button Command="ApplicationCommands.Redo" Content="redo" />
+                <Separator />
+                <Button Command="EditingCommands.ToggleBold" Content="bold" />
+                <Button Command="EditingCommands.ToggleItalic" Content="italic" />
+                <Button Command="EditingCommands.ToggleUnderline" Content="underline" />
+                <Separator />
+                <Button Command="EditingCommands.IncreaseFontSize" Content="+size" />
+                <Button Command="EditingCommands.DecreaseFontSize" Content="-size" />
+                <ComboBox x:Name="FontSizeSelector" />
+                <Separator />
+                <Button Command="EditingCommands.AlignLeft" Content="left" />
+                <Button Command="EditingCommands.AlignCenter" Content="center" />
+                <Button Command="EditingCommands.AlignRight" Content="right" />
+                <Separator />
+                <ComboBox x:Name="FontFamilySelector" DisplayMemberPath="Name" SelectionChanged="FontFamilySelector_SelectionChanged"/>
+                <Separator />
+                <ComboBox x:Name="OffsetSelector" />
+                <ComboBox x:Name="AlighnSelector" />
+                <Separator />
+                <ComboBox x:Name="ColorSelector" SelectionChanged="ColorSelector_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle
+                                    Width="10"
+                                    Height="10"
+                                    Fill="{Binding}" />
+                                <TextBlock Text="{Binding}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+            </ToolBar>
+        </DockPanel>
+        <RichTextBox
+            x:Name="Rich"
+            Grid.Row="1"
+            FontSize="16"/>
     </Grid>
 </UserControl>
